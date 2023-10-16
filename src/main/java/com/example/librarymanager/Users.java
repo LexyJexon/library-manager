@@ -43,6 +43,7 @@ public class Users {
     public void addBook(Books book){
         if (!this.books.contains(book)){
             this.books.add(book);
+            book.availability = false;
         }
     }
 
