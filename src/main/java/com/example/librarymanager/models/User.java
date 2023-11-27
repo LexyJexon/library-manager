@@ -1,14 +1,30 @@
-package com.example.librarymanager;
+package com.example.librarymanager.models;
 
-import com.example.librarymanager.Books;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Users {
+@Entity
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
     public String username;
     private String password;
     private Integer balance = 0;
-    public ArrayList<Books> books;
+
+    @ElementCollection
+    public HashMap<String, Long> books;
 
     public String getUsername() {
         return this.username;
@@ -40,12 +56,13 @@ public class Users {
         this.balance -= writeOffSum;
     }
 
-    public void addBook(Books book){
-        if (!this.books.contains(book)){
-            this.books.add(book);
+    public void addBook(Book book){
+        if (!this.books.containsKey(book.title)){
+            this.books.put(book.title, book.getId());
             book.availability = false;
         }
     }
 
-
+    public User() {
+    }
 }

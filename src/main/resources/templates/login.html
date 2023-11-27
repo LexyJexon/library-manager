@@ -7,10 +7,11 @@
 </head>
 <body>
 <div th:insert="blocks/header :: header"></div>
-<form action="/hello" method="GET" id="nameForm" class="form-check-input mt-5 mb-5">
-    <div>
-        <label for="nameField">How should the app call you?</label>
-        <input name="Admin" id="nameField" class="form-control"><br>
+<form action="/login" method="post" id="nameForm" class="mt-5 mb-5">
+    <div class="form-row align-items-center">
+        <label for="nameField">Enter administrator credentials</label>
+        <input th:type="text" name="adminLogin" id="nameField" class="form-control"><br>
+        <input th:type="password" name="adminPass" id="passField" class="form-control" ><br>
         <button type="submit" class="btn btn-success">Login as admin</button>
     </div>
 </form>
